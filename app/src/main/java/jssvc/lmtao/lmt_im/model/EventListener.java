@@ -11,7 +11,6 @@ import com.hyphenate.chat.EMClient;
 
 import jssvc.lmtao.lmt_im.model.bean.InvationInfo;
 import jssvc.lmtao.lmt_im.model.bean.UserInfo;
-import jssvc.lmtao.lmt_im.model.dao.InviteTable;
 import jssvc.lmtao.lmt_im.utils.Constants;
 import jssvc.lmtao.lmt_im.utils.SpUtils;
 
