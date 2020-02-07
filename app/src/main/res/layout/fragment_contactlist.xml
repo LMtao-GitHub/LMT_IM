@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="40dp"
+    android:background="#99D9FA">
+    <TextView
+        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:text="联系人"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:textSize="24sp"/>
+    <ImageView
+        android:id="@+id/iv_contact_invite"
+        android:layout_marginRight="10dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/conversation_more"/>
+
+
+</RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/contact_invite_ll"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/group_new_friend"
+
+            style="@style/ContactListFragmentImage"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:text="好友邀请"
+            android:textSize="24sp"/>
+        <ImageView
+            android:id="@+id/iv_contact_red"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/dot_red"
+            android:gravity="center"
+            android:layout_marginLeft="10dp"/>
+    </LinearLayout>
+    <LinearLayout
+
+        android:id="@+id/contact_grooup_ll"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:src="@drawable/group_icon"
+
+            style="@style/ContactListFragmentImage"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:text="群组"
+            android:textSize="24sp"/>
+    </LinearLayout>
+<TextView
+    android:layout_width="match_parent"
+    android:layout_height="20dp"
+    android:background="#3B000000"
+    android:text="好友"/>
+    <ListView
+        android:id="@+id/lv_contact"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>
