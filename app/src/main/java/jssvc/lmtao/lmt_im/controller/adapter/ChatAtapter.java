@@ -42,11 +42,11 @@ public class ChatAtapter extends ArrayAdapter<MsgInfo> {
         hodler.tv_chat_name = (TextView)view.findViewById(R.id.tv_chat_name);
         hodler.tv_chat_msg = (TextView)view.findViewById(R.id.tv_chat_msg);
         hodler.tv_chat_dot = (TextView)view.findViewById(R.id.tv_chat_dot);
-        hodler.tv_chat_name.setText(getMsgInfo().getHxid());
+        hodler.tv_chat_name.setText(getMsgInfo().getId());
         hodler.tv_chat_msg.setText(getMsgInfo().getMsg());
-        if (getMsgInfo().getStatus()== MsgInfo.MsgStatus.READ){
-            hodler.tv_chat_dot.setVisibility(View.GONE);
-        }else if (getMsgInfo().getStatus()== MsgInfo.MsgStatus.READ){
+        if (getMsgInfo().getIs_read_msg()== 0){
+            hodler.tv_chat_dot.setVisibility(View.VISIBLE);
+        }else if (getMsgInfo().getIs_read_msg()== 1){
             hodler.tv_chat_dot.setVisibility(View.GONE);
         }
 

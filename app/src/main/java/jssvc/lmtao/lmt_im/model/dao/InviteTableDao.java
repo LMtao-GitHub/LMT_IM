@@ -16,13 +16,10 @@ import jssvc.lmtao.lmt_im.model.db.HelperDB;
 public class InviteTableDao {
     private HelperDB helper;
 
-    public InviteTableDao(HelperDB helperDB) {
+    public InviteTableDao(HelperDB helperDB)     {
         helper=helperDB;
     }
 
-    public InviteTableDao() {
-        super();
-    }
 
     //添加邀请
     public void addInvitation(InvationInfo invationInfo){

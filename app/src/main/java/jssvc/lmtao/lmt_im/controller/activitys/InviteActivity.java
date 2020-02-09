@@ -135,7 +135,7 @@ public class InviteActivity extends AppCompatActivity {
         List<InvationInfo> invitionInfos = Model.getInstance().getManagerDB().getInviteTableDao().getInvatation();
         //刷星适配器
         inviteApapter.refresh(invitionInfos);
-        Log.d("Invite", "refresh: "+invitionInfos);
+        Log.d("打印", "refresh: "+invitionInfos);
 
     }
 

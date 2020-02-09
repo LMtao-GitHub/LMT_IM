@@ -241,17 +241,17 @@ public class ContactListFragment extends Fragment {
     }
 
     //刷新页面
-    private void refreshContact() {
+        private void refreshContact() {
 
-        contacts = Model.getInstance().getManagerDB().getContactTableDao().getContacts();
-        Log.d("delete1", "刷新"+ contacts);
-        //jiaoyan
-        if(contacts !=null && contacts.size()>0){
+            contacts = Model.getInstance().getManagerDB().getContactTableDao().getContacts();
+            Log.d("打印", "刷新"+ contacts);
+            //jiaoyan
+            if(contacts !=null && contacts.size()>0){
 
-            adapter = new ContactAtapter(getActivity(),R.layout.item_contact, contacts);
-            Log.d("Contact", "refreshContact: "+ adapter);
-            listView.setAdapter(adapter);
-        }
+                adapter = new ContactAtapter(getActivity(),R.layout.item_contact, contacts);
+                Log.d("打印", "refreshContact: "+ adapter);
+                listView.setAdapter(adapter);
+            }
 
 
     }
