@@ -12,6 +12,7 @@ import jssvc.lmtao.lmt_im.model.db.ManagerDB;
 
 /*数据模型全局类*/
 public class Model {
+    public static final String TAG = "打印";
     Context context;
     UserAccountTableDao userAccountDao;
     /*newCachedThreadPool()长时间不使用线程会自动关闭线程*/

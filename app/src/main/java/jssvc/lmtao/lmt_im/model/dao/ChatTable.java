@@ -1,6 +1,6 @@
 package jssvc.lmtao.lmt_im.model.dao;
 /*聊天记录表*/
-public class MsgTable {
+public class ChatTable {
     public static final String TAB_NAME = "tab_msg";
     public static final String ID = "id";
     public static final String USER_ID = "user_id";

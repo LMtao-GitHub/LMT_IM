@@ -15,7 +15,6 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,16 +24,13 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.HyphenateException;
-import com.hyphenate.util.EasyUtils;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import jssvc.lmtao.lmt_im.R;
 import jssvc.lmtao.lmt_im.controller.activitys.AddContactActivity;
-import jssvc.lmtao.lmt_im.controller.activitys.ChatActivity;
+import jssvc.lmtao.lmt_im.controller.activitys.MsgActivity;
 import jssvc.lmtao.lmt_im.controller.activitys.InviteActivity;
 import jssvc.lmtao.lmt_im.controller.adapter.ContactAtapter;
 import jssvc.lmtao.lmt_im.model.Model;
@@ -42,7 +38,7 @@ import jssvc.lmtao.lmt_im.model.bean.UserInfo;
 import jssvc.lmtao.lmt_im.utils.Constants;
 import jssvc.lmtao.lmt_im.utils.SpUtils;
 
-import static jssvc.lmtao.lmt_im.controller.activitys.ChatActivity.CHAT_HXID;
+import static jssvc.lmtao.lmt_im.controller.activitys.MsgActivity.CHAT_HXID;
 
 //联系人界面
 public class ContactListFragment extends Fragment {
@@ -121,7 +117,7 @@ public class ContactListFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), ChatActivity.class);
+                Intent intent = new Intent(getActivity(), MsgActivity.class);
                 intent.putExtra(CHAT_HXID,mHxid);
                 startActivity(intent);
             }

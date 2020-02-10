@@ -6,11 +6,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import jssvc.lmtao.lmt_im.model.dao.MsgTable;
-import jssvc.lmtao.lmt_im.model.dao.MsgTableDao;
+import jssvc.lmtao.lmt_im.model.dao.ChatTable;
 
-public class MsgDB extends SQLiteOpenHelper {
-    public MsgDB(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+public class ChatDB extends SQLiteOpenHelper {
+    public ChatDB(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }
     /**
@@ -19,7 +18,7 @@ public class MsgDB extends SQLiteOpenHelper {
      * */
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(MsgTable.CREATE_TAB);
+        db.execSQL(ChatTable.CREATE_TAB);
 
     }
 

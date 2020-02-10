@@ -3,21 +3,15 @@ package jssvc.lmtao.lmt_im.controller.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.hyphenate.EMMessageListener;
@@ -27,7 +21,7 @@ import com.hyphenate.chat.EMMessage;
 import java.util.List;
 
 import jssvc.lmtao.lmt_im.R;
-import jssvc.lmtao.lmt_im.controller.activitys.ChatActivity;
+import jssvc.lmtao.lmt_im.controller.activitys.MsgActivity;
 import jssvc.lmtao.lmt_im.controller.adapter.ChatAtapter;
 import jssvc.lmtao.lmt_im.model.Model;
 import jssvc.lmtao.lmt_im.model.bean.MsgInfo;
@@ -48,10 +42,6 @@ public class ChatFragent extends Fragment {
         initView(view);
         initData();
         refreshContact();
-
-
-
-
         return view;
     }
 
@@ -64,41 +54,27 @@ public class ChatFragent extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getActivity(), ChatActivity.class);
+                Intent intent = new Intent(getActivity(), MsgActivity.class);
                 fromId = msgInfos.get(position).getFriend_id();
-                intent.putExtra("fromId",fromId);
-                Model.getInstance().getManagerDB().getMsgTableDao().update(fromId);
+                intent.putExtra(MsgActivity.CHAT_HXID,fromId);
+                Model.getInstance().getManagerDB().getChatTableDao().update(fromId);
                 refreshContact();
                 startActivity(intent);
             }
         });
 
     }
-
-/*    @Override
-    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        int position = ((AdapterView.AdapterContextMenuInfo) menuInfo).position;
-        MsgInfo msgInfo = (MsgInfo) listView.getItemAtPosition(position);
-        fromId = msgInfo.getFriend_id();
-        Log.d("打印", "onItemClick: "+fromId);
-
-    }*/
-
     //刷新页面
     private void refreshContact() {
-
-        msgInfos = Model.getInstance().getManagerDB().getMsgTableDao().getMsgInfo();
-        Log.d("打印", ": " + msgInfos);
-
+        msgInfos = Model.getInstance().getManagerDB().getChatTableDao().getMsgInfo();
         //jiaoyan
         if (msgInfos != null && msgInfos.size() > 0) {
 
             atapter = new ChatAtapter(getActivity(), R.layout.item_chat, msgInfos);
             listView.setAdapter(atapter);
         }
-
     }
+
 
 
     private EMMessageListener emMessageListener = new EMMessageListener() {
@@ -112,15 +88,18 @@ public class ChatFragent extends Fragment {
         @Override
         public void onCmdMessageReceived(List<EMMessage> messages) {
 
+
         }
 
         @Override
         public void onMessageRead(List<EMMessage> messages) {
 
+
         }
 
         @Override
         public void onMessageDelivered(List<EMMessage> messages) {
+
 
         }
 
@@ -132,6 +111,7 @@ public class ChatFragent extends Fragment {
         @Override
         public void onMessageChanged(EMMessage message, Object change) {
 
+
         }
     };
 
@@ -142,7 +122,9 @@ public class ChatFragent extends Fragment {
         msgInfo.setIs_read_msg(0);
         msgInfo.setMsg(messages.get(0).getBody().toString());
         msgInfo.setId(messages.get(0).getFrom());
-        Model.getInstance().getManagerDB().getMsgTableDao().addMsg(msgInfo);
+        msgInfo.setIs_mine_msg(0);//0对方消息
+        Model.getInstance().getManagerDB().getChatTableDao().addMsg(msgInfo);
+
         if (getActivity()==null){
             return;
         }
