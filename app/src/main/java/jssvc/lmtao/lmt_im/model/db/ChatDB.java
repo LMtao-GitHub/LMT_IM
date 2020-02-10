@@ -10,7 +10,7 @@ import jssvc.lmtao.lmt_im.model.dao.ChatTable;
 
 public class ChatDB extends SQLiteOpenHelper {
     public ChatDB(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+        super(context, "name", factory, version);
     }
     /**
      * 当数据库首次创建时执行该方法，一般将创建表等初始化操作放在该方法中执行.

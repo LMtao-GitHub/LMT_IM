@@ -16,37 +16,37 @@ import java.util.List;
 
 
 import jssvc.lmtao.lmt_im.R;
-import jssvc.lmtao.lmt_im.model.bean.MsgInfo;
+import jssvc.lmtao.lmt_im.model.bean.ChatInfo;
 
 
-public class ChatAtapter extends ArrayAdapter<MsgInfo> {
+public class ChatAtapter extends ArrayAdapter<ChatInfo> {
 
-    private MsgInfo msgInfo;
+    private ChatInfo chatInfo;
     private int resource;
     private ViewHodler hodler;
 
-    public ChatAtapter(Context context , int resource ,List<MsgInfo> msgInfos) {
-        super(context, resource,msgInfos);
+    public ChatAtapter(Context context , int resource ,List<ChatInfo> chatInfos) {
+        super(context, resource, chatInfos);
         this.resource = resource;
     }
-    public MsgInfo getMsgInfo(){
-        return msgInfo;
+    public ChatInfo getChatInfo(){
+        return chatInfo;
     }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         hodler = new ViewHodler();
-        msgInfo = getItem(position);
+        chatInfo = getItem(position);
         View view = LayoutInflater.from(getContext()).inflate(resource,parent,false);
         hodler.tv_chat_name = (TextView)view.findViewById(R.id.tv_chat_name);
         hodler.tv_chat_msg = (TextView)view.findViewById(R.id.tv_chat_msg);
         hodler.tv_chat_dot = (TextView)view.findViewById(R.id.tv_chat_dot);
-        hodler.tv_chat_name.setText(getMsgInfo().getId());
-        hodler.tv_chat_msg.setText(getMsgInfo().getMsg());
-        if (getMsgInfo().getIs_read_msg()== 0){
+        hodler.tv_chat_name.setText(getChatInfo().getId());
+        hodler.tv_chat_msg.setText(getChatInfo().getMsg());
+        if (getChatInfo().getIs_read_msg()== 0){
             hodler.tv_chat_dot.setVisibility(View.VISIBLE);
-        }else if (getMsgInfo().getIs_read_msg()== 1){
+        }else if (getChatInfo().getIs_read_msg()== 1){
             hodler.tv_chat_dot.setVisibility(View.GONE);
         }
 
@@ -55,8 +55,8 @@ public class ChatAtapter extends ArrayAdapter<MsgInfo> {
     }
 
     public interface OnIsChatReadListener{
-        void onread(MsgInfo msgInfo);
-        void onUnread(MsgInfo msgInfo);
+        void onread(ChatInfo chatInfo);
+        void onUnread(ChatInfo chatInfo);
     }
     private class ViewHodler{
         private TextView tv_chat_name;

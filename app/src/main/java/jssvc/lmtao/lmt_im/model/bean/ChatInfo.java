@@ -1,6 +1,6 @@
 package jssvc.lmtao.lmt_im.model.bean;
 
-public class MsgInfo {
+public class ChatInfo {
     private String msg;
     private String id;
     private String user_id;
@@ -10,35 +10,9 @@ public class MsgInfo {
     private int is_read_msg;
     private int is_mine_msg;
     private int delete_msg;
-    private int count;
 
 
-
-    public MsgInfo() {
-    }
-
-    @Override
-    public String toString() {
-        return "MsgInfo{" +
-                "msg='" + msg + '\'' +
-                ", id='" + id + '\'' +
-                ", user_id='" + user_id + '\'' +
-                ", friend_id='" + friend_id + '\'' +
-                ", type_msg='" + type_msg + '\'' +
-                ", data_msg='" + data_msg + '\'' +
-                ", is_read_msg=" + is_read_msg +
-                ", is_mine_msg=" + is_mine_msg +
-                ", delete_msg=" + delete_msg +
-                ", count=" + count +
-                '}';
-    }
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
+    public ChatInfo() {
     }
 
     public String getMsg() {
@@ -112,4 +86,24 @@ public class MsgInfo {
     public void setDelete_msg(int delete_msg) {
         this.delete_msg = delete_msg;
     }
+
+    @Override
+    public String toString() {
+        return "ChatInfo{" +
+                "msg='" + msg + '\'' +
+                ", id='" + id + '\'' +
+                ", user_id='" + user_id + '\'' +
+                ", friend_id='" + friend_id + '\'' +
+                ", type_msg='" + type_msg + '\'' +
+                ", data_msg='" + data_msg + '\'' +
+                ", is_read_msg=" + is_read_msg +
+                ", is_mine_msg=" + is_mine_msg +
+                ", delete_msg=" + delete_msg +
+                '}';
+    }
 }
+
+
+
+
+
