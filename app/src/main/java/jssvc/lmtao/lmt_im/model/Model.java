@@ -3,6 +3,10 @@ package jssvc.lmtao.lmt_im.model;
 
 import android.content.Context;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -60,6 +64,20 @@ public class Model {
     }
     public ManagerDB getManagerDB(){
         return managerDB;
+    }
+
+    public static String getIOS8601Timestamp(){
+
+        /*获取当前系统时间*/
+        long time = System.currentTimeMillis();
+
+        /*时间戳转换成IOS8601字符串*/
+        Date date = new Date(time);
+        TimeZone tz = TimeZone.getTimeZone("Asia/Beijing");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        df.setTimeZone(tz);
+        String nowAsIOS = df.format(date);
+        return nowAsIOS;
     }
 }
 

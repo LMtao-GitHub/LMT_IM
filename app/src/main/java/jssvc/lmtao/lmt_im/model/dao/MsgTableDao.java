@@ -42,10 +42,10 @@ public class MsgTableDao {
         db.close();
     }
     /*获取所有历史记录*/
-    public List<MsgInfo>getMsg(){
+    public List<MsgInfo>getMsg(String id){
         SQLiteDatabase db = helperDB.getReadableDatabase();
 
-        String sql = "select * from " + MsgTable.TAB_NAME;
+        String sql = "select * from "+ MsgTable.TAB_NAME +" where "+ MsgTable.FRIEND_ID +"="+"'"+id+"'";
         Cursor cursor = db.rawQuery(sql ,null);
 
         List<MsgInfo> msgInfos = new ArrayList<>();

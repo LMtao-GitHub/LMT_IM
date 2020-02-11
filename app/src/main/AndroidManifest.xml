@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="jssvc.lmtao.lmt_im">
+
     <!-- Required -->
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -27,7 +28,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".controller.activitys.MsgActivity"></activity>
+        <receiver
+            android:name=".controller.activitys.MsgActivity$MyReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="jssvc.lmtao.lmt_im.REFRESHCONTACT.REFRESHCONTACT"/>
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".controller.activitys.MsgActivity" />
         <activity android:name=".controller.activitys.InviteActivity" />
         <activity android:name=".controller.activitys.AddContactActivity" />
         <activity android:name=".controller.activitys.StartActivity">

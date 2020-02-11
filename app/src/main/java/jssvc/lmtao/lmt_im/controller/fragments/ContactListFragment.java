@@ -118,6 +118,10 @@ public class ContactListFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), MsgActivity.class);
+
+                UserInfo userInfo = (UserInfo) listView.getItemAtPosition(position);
+                mHxid = userInfo.getName();
+
                 intent.putExtra(CHAT_HXID,mHxid);
                 startActivity(intent);
             }

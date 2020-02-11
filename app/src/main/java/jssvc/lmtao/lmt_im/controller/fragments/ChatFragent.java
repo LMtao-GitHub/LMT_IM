@@ -1,7 +1,10 @@
 package jssvc.lmtao.lmt_im.controller.fragments;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,7 +31,7 @@ import jssvc.lmtao.lmt_im.controller.adapter.ChatAtapter;
 import jssvc.lmtao.lmt_im.model.Model;
 import jssvc.lmtao.lmt_im.model.bean.ChatInfo;
 import jssvc.lmtao.lmt_im.model.bean.MsgInfo;
-import jssvc.lmtao.lmt_im.model.dao.MsgTable;
+
 
 //会话页面
 public class ChatFragent extends Fragment {
@@ -35,7 +39,7 @@ public class ChatFragent extends Fragment {
     private ChatAtapter atapter;
     private List<ChatInfo> chatInfos;
     private String fromId;
-    private LocalBroadcastManager mLBM;
+    private LocalBroadcastManager localBroadcastManager;
 
 
     @Nullable
@@ -53,6 +57,9 @@ public class ChatFragent extends Fragment {
     }
 
     private void initData() {
+
+
+
         EMClient.getInstance().chatManager().addMessageListener(emMessageListener);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -60,19 +67,20 @@ public class ChatFragent extends Fragment {
                 Intent intent = new Intent(getActivity(), MsgActivity.class);
                 fromId = chatInfos.get(position).getFriend_id();
                 intent.putExtra(MsgActivity.CHAT_HXID,fromId);
-                Model.getInstance().getManagerDB().getChatTableDao().update(fromId);
+                Model.getInstance().getManagerDB().getChatTableDao().update_Read(fromId);
                 refreshContact();
                 startActivity(intent);
             }
         });
 
     }
+
+
     //刷新页面
     private void refreshContact() {
-        chatInfos = Model.getInstance().getManagerDB().getChatTableDao().getMsgInfo();
+        chatInfos = Model.getInstance().getManagerDB().getChatTableDao().getChatInfo();
         //jiaoyan
         if (chatInfos != null && chatInfos.size() > 0) {
-
             atapter = new ChatAtapter(getActivity(), R.layout.item_chat, chatInfos);
             listView.setAdapter(atapter);
         }
@@ -84,6 +92,7 @@ public class ChatFragent extends Fragment {
         @Override
         public void onMessageReceived(List<EMMessage> messages) {
            data(messages);
+
         }
 
 
@@ -137,7 +146,7 @@ public class ChatFragent extends Fragment {
         msgInfo.setFriend_id(messages.get(0).getFrom());
         msgInfo.setMsg(messages.get(0).getBody().toString());
         Model.getInstance().getManagerDB().getMsgTableDao().addMsg(msgInfo);
-        add(chatInfo,msgInfo);
+       ;
         if (getActivity()==null){
             return;
         }
@@ -147,13 +156,5 @@ public class ChatFragent extends Fragment {
                 refreshContact();
             }
         });
-
     }
-    private void add(ChatInfo chatInfo,MsgInfo msgInfo){
-
-
-    }
-
-
-
 }

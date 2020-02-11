@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class ChatAtapter extends ArrayAdapter<ChatInfo> {
     private ChatInfo chatInfo;
     private int resource;
     private ViewHodler hodler;
+
 
     public ChatAtapter(Context context , int resource ,List<ChatInfo> chatInfos) {
         super(context, resource, chatInfos);

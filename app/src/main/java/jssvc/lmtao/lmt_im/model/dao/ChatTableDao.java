@@ -37,7 +37,7 @@ public class ChatTableDao {
         Log.d("打印", "记录添加成功");
     }
     //获取信息
-    public List<ChatInfo>getMsgInfo(){
+    public List<ChatInfo>getChatInfo(){
         SQLiteDatabase db = helperDB.getReadableDatabase();
 
         String sql = "select * from " + ChatTable.TAB_NAME;
@@ -61,11 +61,10 @@ public class ChatTableDao {
         cursor.close();
         return chatInfos;
     }
-    public void update(String fromid){
+    public void update_Read(String fromid){
         SQLiteDatabase db = helperDB.getReadableDatabase();
         ContentValues values = new ContentValues();
         values.put(ChatTable.IS_READ_MSG,1);
-
         db.update(ChatTable.TAB_NAME,values, ChatTable.FRIEND_ID + "= ?",new String[]{fromid});
         db.close();
     }

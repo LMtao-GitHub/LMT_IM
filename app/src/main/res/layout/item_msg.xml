@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_msg_left"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/iv_msg_left"
+            style="@style/ContactListFragmentImage"
+            android:layout_alignParentLeft="true"
+            android:src="@drawable/default_user_icon" />
+
+        <TextView
+            android:id="@+id/tv_msg_left"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@+id/iv_msg_left" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_msg_data"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="wrap_content"/>
+
+    <RelativeLayout
+        android:id="@+id/rl_msg_right"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+        <ImageView
+            android:id="@+id/iv_msg_right"
+            style="@style/ContactListFragmentImage"
+            android:src="@drawable/default_user_icon"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:id="@+id/tv_msg_right"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@+id/iv_msg_right" />
+
+    </RelativeLayout>
+
+</LinearLayout>
