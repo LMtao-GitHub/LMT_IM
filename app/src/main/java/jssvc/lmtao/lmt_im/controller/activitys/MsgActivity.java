@@ -61,11 +61,7 @@ public class MsgActivity extends AppCompatActivity {
         bt_msg_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-//设置广播的名字（设置Action）
-                intent.setAction("jssvc.lmtao.lmt_im.REFRESHCONTACT");
-                sendBroadcast(intent);
-                Log.d(Model.TAG, "onClick: ");
+
             }
         });
 
