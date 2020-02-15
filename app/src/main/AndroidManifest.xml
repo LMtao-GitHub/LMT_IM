@@ -28,10 +28,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-
-
-        <activity android:name=".controller.activitys.MsgActivity" />
+        <activity android:name=".controller.activitys.MsgActivity"
+            android:launchMode="singleTop"/>
         <activity android:name=".controller.activitys.InviteActivity" />
         <activity android:name=".controller.activitys.AddContactActivity" />
         <activity android:name=".controller.activitys.StartActivity">

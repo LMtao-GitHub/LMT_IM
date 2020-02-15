@@ -28,6 +28,7 @@ import java.util.List;
 import jssvc.lmtao.lmt_im.R;
 import jssvc.lmtao.lmt_im.controller.activitys.MsgActivity;
 import jssvc.lmtao.lmt_im.controller.adapter.ChatAtapter;
+import jssvc.lmtao.lmt_im.controller.adapter.MsgAdapter;
 import jssvc.lmtao.lmt_im.model.Model;
 import jssvc.lmtao.lmt_im.model.bean.ChatInfo;
 import jssvc.lmtao.lmt_im.model.bean.MsgInfo;
@@ -57,10 +58,7 @@ public class ChatFragent extends Fragment {
     }
 
     private void initData() {
-
-
-
-        EMClient.getInstance().chatManager().addMessageListener(emMessageListener);
+        for (int i=0;i<1;i++){
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -69,9 +67,15 @@ public class ChatFragent extends Fragment {
                 intent.putExtra(MsgActivity.CHAT_HXID,fromId);
                 Model.getInstance().getManagerDB().getChatTableDao().update_Read(fromId);
                 refreshContact();
-                startActivity(intent);
+
+                    startActivity(intent);
+                    Log.d(Model.TAG, "onItemClick: ");
+
+
+
             }
         });
+        }
 
     }
 
@@ -92,7 +96,6 @@ public class ChatFragent extends Fragment {
         @Override
         public void onMessageReceived(List<EMMessage> messages) {
            data(messages);
-
         }
 
 
@@ -143,6 +146,7 @@ public class ChatFragent extends Fragment {
         msgInfo.setId(String.valueOf(Model.getInstance().getManagerDB().getMsgTableDao().getMsgCount()+1));
         msgInfo.setCount(Model.getInstance().getManagerDB().getMsgTableDao().getMsgCount()+1);
         msgInfo.setIs_mine_msg(0);
+        msgInfo.setData_msg(Model.getIOS8601Timestamp());
         msgInfo.setFriend_id(messages.get(0).getFrom());
         msgInfo.setMsg(messages.get(0).getBody().toString());
         Model.getInstance().getManagerDB().getMsgTableDao().addMsg(msgInfo);
@@ -156,5 +160,19 @@ public class ChatFragent extends Fragment {
                 refreshContact();
             }
         });
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        EMClient.getInstance().chatManager().addMessageListener(emMessageListener);
+        Log.d(Model.TAG, "打开监听emMessageListener");
+        refreshContact();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        EMClient.getInstance().chatManager().removeMessageListener(emMessageListener);
+        Log.d(Model.TAG, "关闭监听emMessageListener");
     }
 }

@@ -1,6 +1,10 @@
 package jssvc.lmtao.lmt_im.controller.adapter;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,19 +15,26 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jssvc.lmtao.lmt_im.R;
+import jssvc.lmtao.lmt_im.model.Model;
+import jssvc.lmtao.lmt_im.model.bean.InvationInfo;
 import jssvc.lmtao.lmt_im.model.bean.MsgInfo;
 
 public class MsgAdapter extends ArrayAdapter<MsgInfo> {
     private int resourceId;
     private RelativeLayout rl_msg_left,rl_msg_right;
-    private TextView tv_msg_left,tv_msg_right,tv_msg_data;
+    private TextView tv_msg_left,tv_msg_right;
+    public TextView tv_msg_data;
+    private List<MsgInfo>msgInfos=new ArrayList<>();
+    private Context context;
 
     public MsgAdapter(@NonNull Context context, int resource, @NonNull List<MsgInfo> objects) {
         super(context, resource, objects);
         resourceId = resource;
+        this.context = context;
     }
 
     @NonNull
@@ -47,7 +58,27 @@ public class MsgAdapter extends ArrayAdapter<MsgInfo> {
             rl_msg_left.setVisibility(View.GONE);
             rl_msg_right.setVisibility(View.VISIBLE);
         }
+
+        tv_msg_data.setVisibility(View.GONE);
+        Log.d("test", "getView: "+Model.getInstance().getManagerDB().getMsgTableDao().getMsgCount()%3);
+        Log.d("test", "getView: "+position+"   "+ msgInfos.size());
+        if(Model.getInstance().getManagerDB().getMsgTableDao().getMsgCount()%3==0)
+
+            if (position ==msgInfos.size()) {
+
+
+                tv_msg_data.setVisibility(View.VISIBLE);
+            }
+
         tv_msg_data.setText(msgInfo.getData_msg());
+
         return view;
     }
+
+
+
+
+
+
+
 }
