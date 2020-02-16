@@ -27,8 +27,6 @@ public class MsgAdapter extends ArrayAdapter<MsgInfo> {
     private int resourceId;
     private RelativeLayout rl_msg_left,rl_msg_right;
     private TextView tv_msg_left,tv_msg_right;
-    public TextView tv_msg_data;
-    private List<MsgInfo>msgInfos=new ArrayList<>();
     private Context context;
 
     public MsgAdapter(@NonNull Context context, int resource, @NonNull List<MsgInfo> objects) {
@@ -42,7 +40,6 @@ public class MsgAdapter extends ArrayAdapter<MsgInfo> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         MsgInfo msgInfo = getItem(position);
         View view= LayoutInflater.from(getContext()).inflate(resourceId,parent,false);
-        tv_msg_data = (TextView) view.findViewById(R.id.tv_msg_data);
         tv_msg_left = (TextView) view.findViewById(R.id.tv_msg_left);
         tv_msg_right = (TextView) view.findViewById(R.id.tv_msg_right);
         rl_msg_left = (RelativeLayout)view.findViewById(R.id.rl_msg_left);
@@ -58,20 +55,6 @@ public class MsgAdapter extends ArrayAdapter<MsgInfo> {
             rl_msg_left.setVisibility(View.GONE);
             rl_msg_right.setVisibility(View.VISIBLE);
         }
-
-        tv_msg_data.setVisibility(View.GONE);
-        Log.d("test", "getView: "+Model.getInstance().getManagerDB().getMsgTableDao().getMsgCount()%3);
-        Log.d("test", "getView: "+position+"   "+ msgInfos.size());
-        if(Model.getInstance().getManagerDB().getMsgTableDao().getMsgCount()%3==0)
-
-            if (position ==msgInfos.size()) {
-
-
-                tv_msg_data.setVisibility(View.VISIBLE);
-            }
-
-        tv_msg_data.setText(msgInfo.getData_msg());
-
         return view;
     }
 

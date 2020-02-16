@@ -2,13 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/tv_msg_data"
-        android:layout_width="match_parent"
-        android:gravity="center"
-        android:layout_height="wrap_content"/>
-
     <RelativeLayout
+        android:layout_marginBottom="10px"
         android:id="@+id/rl_msg_left"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,17 +13,19 @@
             android:id="@+id/iv_msg_left"
             style="@style/ContactListFragmentImage"
             android:layout_alignParentLeft="true"
-            android:src="@drawable/default_user_icon" />
+            android:src="@drawable/user_left" />
 
         <TextView
             android:id="@+id/tv_msg_left"
             android:layout_width="wrap_content"
             android:maxWidth="300dp"
-            android:gravity="center"
+            android:background="@drawable/msg"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
             android:text="23333"
+            android:textColor="#9F26B4"
+            android:padding="10px"
             android:textSize="24sp"
             android:layout_toRightOf="@+id/iv_msg_left" />
     </RelativeLayout>
@@ -36,6 +33,7 @@
 
 
     <RelativeLayout
+        android:layout_marginBottom="10px"
         android:id="@+id/rl_msg_right"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,18 +41,20 @@
         <ImageView
             android:id="@+id/iv_msg_right"
             style="@style/ContactListFragmentImage"
-            android:src="@drawable/default_user_icon"
+            android:src="@drawable/user_right"
             android:layout_alignParentRight="true"/>
 
         <TextView
             android:id="@+id/tv_msg_right"
             android:layout_width="wrap_content"
             android:maxWidth="300dp"
-            android:gravity="center"
-            android:text="228833333333333333"
+            android:background="@drawable/msg"
+            android:text="22883333"
+            android:textColor="#9F26B4"
             android:layout_height="wrap_content"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
+            android:gravity="right"
+            android:padding="10px"
             android:textSize="24sp"
             android:layout_toLeftOf="@+id/iv_msg_right" />
 

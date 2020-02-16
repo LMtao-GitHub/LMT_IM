@@ -136,7 +136,9 @@ public class ChatFragent extends Fragment {
         chatInfo.setFriend_id(messages.get(0).getFrom());
         //查询是否有阅读，没有就+1；
         chatInfo.setIs_read_msg(0);
-        chatInfo.setMsg(messages.get(0).getBody().toString());
+        String[] msg=messages.get(0).getBody().toString().split("\"");
+
+        chatInfo.setMsg(msg[1]);
         chatInfo.setId(messages.get(0).getFrom());
         chatInfo.setIs_mine_msg(0);//0对方消息
         Model.getInstance().getManagerDB().getChatTableDao().addMsg(chatInfo);
@@ -148,7 +150,7 @@ public class ChatFragent extends Fragment {
         msgInfo.setIs_mine_msg(0);
         msgInfo.setData_msg(Model.getIOS8601Timestamp());
         msgInfo.setFriend_id(messages.get(0).getFrom());
-        msgInfo.setMsg(messages.get(0).getBody().toString());
+        msgInfo.setMsg(msg[1]);
         Model.getInstance().getManagerDB().getMsgTableDao().addMsg(msgInfo);
        ;
         if (getActivity()==null){

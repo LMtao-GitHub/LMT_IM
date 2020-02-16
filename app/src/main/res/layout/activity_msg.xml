@@ -34,7 +34,9 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ListView
+        android:background="@drawable/bg"
         android:id="@+id/lv_msg"
+        android:alpha="0.8"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:divider="@null"
@@ -42,18 +44,35 @@
 
         android:layout_weight="1"/>
     <LinearLayout
+        android:padding="20px"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="100dp"
+        android:background="@drawable/msg2">
+
         <EditText
+            android:background="@drawable/msg1"
             android:id="@+id/et_msg_text"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="8"/>
+
+            android:layout_height="50dp"
+            android:layout_weight="8" />
+
         <Button
+            android:background="#00000000"
             android:id="@+id/bt_msg_send"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:text="发送"
             android:layout_weight="2"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+        </LinearLayout>
+
     </LinearLayout>
+
+
+
+
 </LinearLayout>
